@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Car Parking</title>
+    <link rel="stylesheet" href="file:///C:/regis/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="logo">Smart Parkz</div>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('customers')">Customers</a></li>
+            <li><a href="#" onclick="showPage('slots')">Parking Slots</a></li>
+            <li><a href="#" onclick="showPage('login')">Login</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="home" style="padding: 50px 300px; text-align: center; background: linear-gradient(135deg, #1a1a2e, #16213e); color: white;">
+    
+            <!-- Hero Section -->
+            <div style="max-width: 900px; margin: auto; padding: 20px; position: relative; top: -50px;">
+                <h1 style="font-size: 55px; font-weight: bold; text-shadow: 3px 3px 8px rgba(255, 215, 0, 0.6);">
+                    Welcome to Smart Car Parking
+                </h1>
+                <p style="font-size: 20px; margin-bottom: 25px; line-height: 1.7;">
+                    Say goodbye to parking hassles! Our AI-powered Smart Parking system ensures **real-time availability**, **seamless booking**, and **secure parking** with advanced surveillance.
+                </p>
+                <a href="#" style="background-color: #ff6600; padding: 15px 30px; color: white; font-size: 18px; text-decoration: none; font-weight: bold; border-radius: 8px; display: inline-block; transition: 0.3s;">
+                    Book a Slot Now 
+                </a>
+            </div>
+    <!-- Girl Doll Assistant -->
+<div id="girl-doll" onclick="toggleChatbot()" style="
+position: fixed; 
+bottom: 3000px; 
+right: 20px; 
+cursor: pointer; 
+text-align: right; 
+animation: bounce 2s infinite;">
+    <img src="https://www.bytelinksys.com/wp-content/uploads/2023/09/artificial.gif" 
+        alt="Assistant" width="100" height="100">
+    <span id="doll-message" style="
+        display: none; 
+        background: #ff69b4; 
+        color: white; 
+        padding: 8px; 
+        border-radius: 10px; 
+        font-size: 14px; 
+        position: absolute; 
+        text-align: center;
+        top: 5px;
+        right: 110px;">Hi, how can I assist you?</span>
+</div>
+
+<!-- Chatbot UI -->
+<div id="chatbot-container" style="
+position: fixed; 
+bottom: 3000px; 
+right: 20px; 
+width: 250px; 
+height: 300px; 
+background: #fff; 
+border-radius: 12px; 
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+display: none; 
+flex-direction: column; 
+overflow: hidden; 
+border: 2px solid #3918f5;">
+    <div id="chat-header" style="
+        background: #ff69b4; 
+        color: white; 
+        padding: 8px; 
+        text-align: center; 
+        font-weight: bold;
+        position: relative;">
+        Smart Chatbot 
+        <span onclick="closeChatbot()" style="
+            position: absolute; 
+            right: 10px; 
+            top: 5px; 
+            cursor: pointer; 
+            font-size: 18px;">❌</span>
+    </div>
+    <div id="chat-body" style="
+        flex: 1; 
+        padding: 10px; 
+        overflow-y: auto; 
+        font-size: 14px;">
+    </div>
+    <div style="
+        display: flex; 
+        border-top: 1px solid #ddd;">
+        <input type="text" id="chat-input" placeholder="Type your message..." 
+            onkeypress="handleKeyPress(event)" style="
+            border: none; 
+            padding: 8px; 
+            width: 75%; 
+            outline: none;">
+        <button onclick="sendMessage()" style="
+            width: 25%; 
+            background: #ff69b4; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            padding: 8px;">Send</button>
+    </div>
+</div>
+
+
+        
+            <!-- Features Section -->
+            
+    <!-- Why Choose Smart Car Parking -->
+    <div id="choose-section" style="margin-top: 80px; padding: 20px; transition: all 0.5s ease;">
+        <h2 onclick="toggleMenu()" 
+            style="cursor: pointer; font-size: 16px; margin-bottom: 20px; margin-right: 50px; text-shadow: 3px 3px 5px rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px; display: inline-block;">
+            🚘 Why Choose Smart Car Parking? ▼
+        </h2>
+        
+        <div id="choose-content" style="display: none; position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.9); padding: 20px; border-radius: 10px; width: 280px; text-align: left; box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); z-index: 1000;">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
+                    <i class="fas fa-car" style="font-size: 24px; color: #ffcc00;"></i>
+                    <strong> Automated Booking</strong>
+                    <p style="font-size: 14px; margin: 5px 0 0;">Reserve parking online or via Telegram bot.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 24px; color: #ffcc00;"></i>
+                    <strong> Live Slot Tracking</strong>
+                    <p style="font-size: 14px; margin: 5px 0 0;">Check real-time slot availability.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
+                    <i class="fas fa-money-bill-wave" style="font-size: 24px; color: #ffcc00;"></i>
+                    <strong> Secure Payments</strong>
+                    <p style="font-size: 14px; margin: 5px 0 0;">Pay via UPI, card, or mobile wallets.</p>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
+                    <i class="fas fa-shield-alt" style="font-size: 24px; color: #ffcc00;"></i>
+                    <strong> 24/7 Security</strong>
+                    <p style="font-size: 14px; margin: 5px 0 0;">Surveillance ensures total safety.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+        
+            <!-- How It Works -->
+            <div style="margin-top: 80px; padding: 20px;">
+                <h2 style="font-size: 36px; margin-bottom: 30px; text-shadow: 3px 3px 5px rgba(255, 255, 255, 0.3);">
+                    🚦 How It Works?
+                </h2>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+        
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; width: 230px; text-align: center;">
+                        <i class="fas fa-user" style="font-size: 40px; color: #ffcc00;"></i>
+                        <h3 style="margin-top: 10px;">1. Register/Login</h3>
+                        <p>Sign up and access your smart parking dashboard.</p>
+                    </div>
+        
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; width: 230px; text-align: center;">
+                        <i class="fas fa-search-location" style="font-size: 40px; color: #ffcc00;"></i>
+                        <h3 style="margin-top: 10px;">2. Check Slots</h3>
+                        <p>View live parking slot status and availability.</p>
+                    </div>
+        
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; width: 230px; text-align: center;">
+                        <i class="fas fa-parking" style="font-size: 40px; color: #ffcc00;"></i>
+                        <h3 style="margin-top: 10px;">3. Book a Slot</h3>
+                        <p>Reserve your parking space with one click.</p>
+                    </div>
+        
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; width: 230px; text-align: center;">
+                        <i class="fas fa-money-check-alt" style="font-size: 40px; color: #ffcc00;"></i>
+                        <h3 style="margin-top: 10px;">4. Pay & Park</h3>
+                        <p>Complete payment and enjoy seamless parking.</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Testimonials -->
+            <div style="margin-top: 80px; padding: 20px;">
+                <h2 style="font-size: 36px; margin-bottom: 30px; text-shadow: 3px 3px 5px rgba(255, 255, 255, 0.3);">
+                    💬 What Our Users Say
+                </h2>
+                <div style="max-width: 750px; margin: auto;">
+                    <div style="background: rgba(237, 228, 228, 0.1); padding: 20px; border-left: 5px solid #ffcc00; margin-bottom: 15px;">
+                        <p>"Smart Car Parking is a lifesaver! I never waste time looking for a slot anymore!"</p>
+                        <h4>- Ramesh Kumar</h4>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-left: 5px solid #ffcc00;">
+                        <p>"I love the Telegram bot feature, I can book my slot even before leaving home!"</p>
+                        <h4>- Priya Sharma</h4>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+        
+        
+        <section id="customers" style="display: none;">
+            <h2>Customer Details</h2>
+
+            <title>Customer Registrations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <h1>Customer Registrations</h1>
+    <table id="registration-table">
+        <thead>
+            <tr>
+                <th>Slno</th>
+                <th>Customer Name</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Start Hour</th>
+                <th>End Hour</th>
+                <th>Car No.</th>
+                <!-- <th>Slot Booked</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be injected here dynamically -->
+        </tbody>
+    </table>
+
+    <div class="pagination"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentPage = 1;
+            const rowsPerPage = 5;
+
+            // Fetch data and populate table
+            function fetchData() {
+                fetch('/users')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.querySelector("#registration-table tbody");
+                        tableBody.innerHTML = ''; // Clear previous table rows
+                        
+                        // Get data for the current page
+                        const startIndex = (currentPage - 1) * rowsPerPage;
+                        const endIndex = currentPage * rowsPerPage;
+                        const pageData = data.slice(startIndex, endIndex);
+
+                        pageData.forEach((user, index) => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${startIndex + index + 1}</td>
+                                <td>${user.name}</td>
+                                <td>${user.contact}</td>
+                                <td>${user.address}</td>
+                                <td>${user.start_hour}</td>
+                                <td>${user.end_hour}</td>
+                                <td>${user.car_number}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+
+                        // Call function to handle pagination
+                        handlePagination(data.length);
+                    })
+                    .catch(err => {
+                        console.error("Error fetching data: ", err);
+                    });
+            }
+
+            // Handle pagination display and navigation
+            function handlePagination(totalRows) {
+                const pageCount = Math.ceil(totalRows / rowsPerPage);
+                const paginationContainer = document.querySelector('.pagination');
+                paginationContainer.innerHTML = '';
+
+                for (let i = 1; i <= pageCount; i++) {
+                    const pageLink = document.createElement('a');
+                    pageLink.href = "#";
+                    pageLink.textContent = i;
+                    if (i === currentPage) {
+                        pageLink.classList.add('active');
+                    }
+                    pageLink.onclick = (e) => {
+                        e.preventDefault();
+                        currentPage = i;
+                        fetchData();
+                    };
+                    paginationContainer.appendChild(pageLink);
+                }
+            }
+
+            // Sort the table by a column
+            function sortTable(n) {
+                const table = document.getElementById("registration-table");
+                const rows = Array.from(table.rows).slice(1); // Exclude the header row
+                const isAscending = table.rows[0].cells[n].classList.contains("asc");
+
+                rows.sort((a, b) => {
+                    const cellA = a.cells[n].textContent.trim();
+                    const cellB = b.cells[n].textContent.trim();
+
+                    if (cellA < cellB) return isAscending ? -1 : 1;
+                    if (cellA > cellB) return isAscending ? 1 : -1;
+                    return 0;
+                });
+
+                rows.forEach(row => table.appendChild(row)); // Reorder rows
+
+                // Toggle sorting order for next time
+                table.rows[0].cells[n].classList.toggle("asc", !isAscending);
+                table.rows[0].cells[n].classList.toggle("desc", isAscending);
+            }
+
+            // Add sorting to each table header
+            document.querySelectorAll('#registration-table th').forEach((th, index) => {
+                th.onclick = () => sortTable(index);
+            });
+
+            // Initial data load
+            fetchData();
+        });
+    </script>
+</body>
+
+
+
+        </section>
+        <section id="slots">
+            <div class="parking-container" id="parkingPage">
+                <h1>Parking Slot Status</h1>
+                <div class="slot-container" id="slotContainer">
+                    <!-- Dynamically populated parking slots will go here -->
+                </div>
+                
+            </div>
+            <script>
+                async function fetchSlots() {
+                    const response = await fetch('/slots');
+                    const slots = await response.json();
+                    const slotsContainer = document.getElementById('slotContainer');
+                    slotsContainer.innerHTML = ''; // Clear previous slots
+                
+                    slots.forEach(slot => {
+                        const slotDiv = document.createElement('div');
+                        slotDiv.classList.add('slot');
+                
+                        const carIconDiv = document.createElement('div');
+                        carIconDiv.classList.add('car-icon');
+                        carIconDiv.innerHTML = `<i class="fas fa-car"></i>`;
+                
+                        const slotNumber = document.createElement('div');
+                        slotNumber.classList.add('slot-number');
+                        slotNumber.textContent = `Slot ${slot.id}`;
+                
+                        if (slot.status === 'available') {
+                            slotDiv.classList.add('available'); // Green
+                            slotDiv.onclick = () => bookSlot(slot.id);
+                        } else if (slot.status === 'booked') {
+                            slotDiv.classList.add('booked'); // Red
+                            slotDiv.onclick = null; // Disable click
+                        }
+                
+                        slotDiv.appendChild(carIconDiv);
+                        slotDiv.appendChild(slotNumber);
+                        slotsContainer.appendChild(slotDiv);
+                    });
+
+                    // Ensure Telegram Bot section is visible after fetching slots
+                    document.getElementById('telegram-bot').style.display = 'block';
+                }
+                
+                async function bookSlot(slotId) {
+                    const response = await fetch('/book_slot', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: slotId }),
+                    });
+                
+                    const result = await response.json();
+                    if (result.success) {
+                        fetchSlots(); // Refresh slots
+                    } else {
+                        alert('Sorry, the slot is already booked.');
+                    }
+                }
+                
+                // Auto-refresh slot status
+                setInterval(fetchSlots, 3000);
+                fetchSlots();
+            </script>
+            <section id="telegram-bot" style="display: none;">
+                <h2>Register via Telegram Bot</h2>
+                <p>Use our Telegram bot to register for a parking slot.</p>
+                <a href="https://t.me/userRegistrations_bot" target="_blank" class="btn">Start Booking</a>
+            </section>
+        
+        </section>
+
+        <section id="login" style="display: none;">
+            <h2>Login</h2>
+            <p>Please enter your credentials to access the system.</p>
+        </section>
+
+        
+    </main>
+    
+    <script src="script.js"></script>
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll("section").forEach(section => {
+                section.style.display = "none";
+            });
+            document.getElementById(pageId).style.display = "block";
+        }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize elements
+            const dollMessage = document.getElementById("doll-message");
+            const chatInput = document.getElementById("chat-input");
+            const chatBody = document.getElementById("chat-body");
+            const chatbot = document.getElementById("chatbot-container");
+            const chooseSection = document.getElementById("choose-section");
+            const chooseContent = document.getElementById("choose-content");
+            const chooseTitle = chooseSection.querySelector("h2");
+        
+            // Show greeting message after 1 second
+            setTimeout(() => { 
+                if (dollMessage) dollMessage.style.display = "block"; 
+            }, 1000); 
+        
+            // Toggle Chatbot
+            window.toggleChatbot = function () {
+                chatbot.style.display = "flex";
+                speak("Hi! I'm your assistant. How can I help you today?");
+            };
+        
+            // Close Chatbot
+            window.closeChatbot = function () {
+                chatbot.style.display = "none";
+            };
+        
+            // Handle Enter key press in chatbot input
+            window.handleKeyPress = function (event) {
+                if (event.key === "Enter") sendMessage();
+            };
+        
+            // Send message to chatbot API
+            window.sendMessage = async function () {
+                const userMessage = chatInput.value.trim();
+                if (!userMessage) return;
+        
+                // Display user message
+                chatBody.innerHTML += `<p style="background: #ff69b4; color: white; padding: 6px; border-radius: 10px; max-width: 70%; text-align: right; margin: 5px 0 5px auto;">You: ${userMessage}</p>`;
+                chatInput.value = "";
+        
+                // Send to chatbot backend
+                try {
+                    const response = await fetch("/chatbot", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ message: userMessage }),
+                    });
+        
+                    const data = await response.json();
+                    chatBody.innerHTML += `<p style="background: #f1f1f1; color: black; padding: 6px; border-radius: 10px; max-width: 70%; text-align: left; margin: 5px auto 5px 0;">Bot: ${data.response}</p>`;
+                    speak(data.response);
+                } catch (error) {
+                    chatBody.innerHTML += `<p style="background: #f1f1f1; color: black; padding: 6px; border-radius: 10px; max-width: 70%; text-align: left; margin: 5px auto 5px 0;">Bot: Sorry, an error occurred.</p>`;
+                }
+            };
+        
+            // Text-to-Speech Function
+            function speak(text) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = "en-US";
+                utterance.rate = 1.0;  
+                utterance.pitch = 2.0;
+                speechSynthesis.speak(utterance);
+            }
+        
+            // Toggle "Why Choose Smart Car Parking" menu
+            window.toggleMenu = function () {
+                if (chooseContent.style.display === "none") {
+                    chooseContent.style.display = "block";
+                    chooseSection.style.position = "absolute";
+                    chooseSection.style.top = "8px";
+                    chooseSection.style.left = "10px";
+                    chooseSection.style.width = "auto";
+                    chooseSection.style.padding = "0";
+                    chooseTitle.innerHTML = "🚘 Why Choose Smart Car Parking? ▲";
+                } else {
+                    chooseContent.style.display = "none";
+                    chooseSection.style.position = "relative";
+                    chooseSection.style.top = "60%";
+                    chooseSection.style.left = "auto";
+                    chooseSection.style.width = "100%";
+                    chooseTitle.innerHTML = "🚘 Why Choose Smart Car Parking? ▼";
+                }
+            };
+        });
+        </script>
+        
+</body>
+</html>
+<style>
+.parking-container {
+    display: block;
+}
+
+.slot-container {
+    display: flex;
+    justify-content: flex-start;  /* Align to the left side */
+    gap: 25px;
+    margin-top: 50px;
+    flex-wrap: nowrap; /* Ensure slots are in a single row without wrapping */
+    width: 100%; /* Adjust to fit the screen */
+}
+
+.slot {
+    width: 160px;
+    height: 160px;
+    border: 1px solid #ccc;
+    background-color: green;
+    color: rgb(245, 235, 235);
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.slot:hover {
+    transform: scale(1.05);
+}
+
+.slot.booked {
+    background-color: rgba(238, 53, 53, 0.904);
+}
+
+.slot.available {
+    background-color: rgb(30, 170, 30);
+}
+
+.slot.disabled {
+    background-color: #dd3939;
+    cursor: not-allowed;
+}
+
+.slot-number {
+    position: absolute;
+    bottom: 5px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.car-icon {
+    font-size: 60px;
+    color: #fff;
+    animation: car-animation 3s ease-in-out infinite;
+}
+
+.car-icon i {
+    background: linear-gradient(to right, #fff, #80cef0, #e5f795);
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block;
+    font-size: 60px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: auto;
+    background: linear-gradient(135deg, #ccd6d6, #eff3f5);
+    color: #100d0d;
+}
+
+/* Header Container - Fixed Position */
+.header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Fixed height issue */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px; /* Adjusted padding */
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Push content below the fixed navbar */
+main {
+    margin-top: 0px;
+}
+
+/* Logo Styling */
+.logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 70px;
+    color: #2a5c99;
+    text-shadow: 2px 2px 6px rgba(42, 92, 153, 0.3);
+    letter-spacing: 1px;
+    transition: 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 10px rgba(42, 92, 153, 0.5);
+}
+
+/* Navigation Bar */
+nav {
+    background: rgba(71, 71, 122, 0.337);
+    padding: 9px 20px;
+}
+
+/* Navigation Menu */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #1e40af;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    background: rgba(218, 237, 13, 0.1);
+    color: #0f172a;
+    box-shadow: 0 0 8px rgba(1, 4, 15, 0.2);
+}
+
+/* Content Section - Adjusted Position */
+section {
+    margin: 0px auto; /* Reduced margin to bring it up */
+    padding: 100px 60px; /* Adjusted padding for better alignment */
+    max-width: 900px; /* Increased width for better content fit */
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 6px 15px rgba(169, 55, 55, 0.2);
+
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(to right, #44b09e, #32a88c);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(68, 176, 158, 0.5);
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #22b522, #00a000);
+    box-shadow: 0 5px 15px rgba(34, 181, 34, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Table Styling */
+#registration-table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#registration-table th, #registration-table td {
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+#registration-table th {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#registration-table th:hover {
+    background-color: #45a049;
+}
+
+#registration-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#registration-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+#registration-table td {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Pagination Styling */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 10px 15px;
+    text-decoration: none;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    margin: 0 5px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.pagination a:hover {
+    background-color: #e2e2e2;
+}
+
+.pagination .active {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    #registration-table {
+        width: 100%;
+    }
+
+    #registration-table th, #registration-table td {
+        padding: 10px;
+    }
+
+    .pagination a {
+        padding: 8px 12px;
+    }
+}
+</style>
